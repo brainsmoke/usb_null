@@ -1,15 +1,24 @@
 
 include <case_base.scad>
 
-module ffc_slot()
+preview()
 {
-	graft()
-	graft_remove()
+	pcb();
 	on_pcb()
-	cube([13,20,1], center=true);
+	{
+		at_front() usb_c();
+		at_back() usb_c();
+	}
 }
 
-case() {
-	at_back() ffc_slot();
-};
+module features()
+{
+	on_pcb() at_front() usb_c_keepout();
+	on_pcb() at_back() usb_c_keepout();
+}
+
+case()
+{
+	features();
+}
 
